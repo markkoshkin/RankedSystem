@@ -1,15 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
 using Entries;
-using NUnit.Framework;
 using Services;
 
-namespace ServicesTest
+namespace Test
 {
-    [TestFixture]
-    public class SelectionTest
+    class Program
     {
-        [Test]
-        public void TeamSelection()
+        static void Main(string[] args)
         {
             var players = new List<Player>
             {
@@ -70,11 +72,6 @@ namespace ServicesTest
                 },
                 new Player
                 {
-                    Name = "",
-                    Rating = 3.4
-                },
-                new Player
-                {
                     Name = "Идзинский Борис",
                     Rating = 5.0
                 },
@@ -110,9 +107,23 @@ namespace ServicesTest
                 }
             };
 
-            var teams = Selection.GetTeams(players, 3);
-            Assert.IsNotEmpty(teams);
+            for (int i = 0; i < 3; i++)
+            {
+                var teams = Selection.GetTeams(players, 3);
+                Console.WriteLine("Result");
+                foreach (var team in teams)
+                {
+                    Console.WriteLine("Rating : " + team.Rating);
+                    foreach (var player in team.Players)
+                    {
+                        Console.WriteLine(string.Format("Name : {0}, Rating {1}", player.Name, player.Rating));
+                    }
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+           
+            Console.ReadKey();
         }
-
     }
 }
