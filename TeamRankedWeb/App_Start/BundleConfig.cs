@@ -23,6 +23,17 @@ namespace TeamRankedWeb
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/anuglarCore").Include(
+                  "~/Scripts/angular.js",
+                  "~/Scripts/angular-route.js",
+                  "~/Scripts/angular-animate.js",
+                  "~/Scripts/angular-ui/ui-bootstrap.js",
+                  "~/Scripts/angular-ui/ui-bootstrap-tpls.js").IncludeDirectory
+                  ("~/AngularApp", "*.js", true));
+
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }
